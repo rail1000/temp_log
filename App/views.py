@@ -3,17 +3,12 @@
 from flask import app, Blueprint, url_for, render_template, Response, session
 from flask import request
 from App.models import  model
+from App.model1 import model1
 import pymysql
 
 
 conn = pymysql.connect(host='localhost', user='root', password='root', database='233')
 blue = Blueprint("first_blue", __name__)
-
-@blue.route('/create/',methods=['GET','POST'])
-def create():
-    create_DB()
-    return  'successfully'
-
 
 
 @blue.route('/reg/',methods=['GET','POST'])
@@ -41,12 +36,14 @@ def regist():
 
 @blue.route('/insert/',methods=['GET','POST'])
 def insert():
-    regist()
+
     return 'successfully'
 
 @blue.route('/login/', methods=['GET', 'POST'])
 def login():
 
+    mod = model1('', '', '','')
+    artic = mod.query_all()
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -56,7 +53,7 @@ def login():
         if str(rl_password) == password:
 
             session['user']=username
-            return render_template('home.html')
+            return render_template('home.html', artic=artic)
         else :
             return 'filed2'+str(rl_password)
     elif request.method == "GET":
@@ -66,5 +63,7 @@ def login():
 @blue.route('/home/')
 def home():
 
+
     username=session.get('user')
-    return render_template('home.html', username=username)
+    return render_template('home.html')
+

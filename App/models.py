@@ -1,6 +1,8 @@
 import pymysql
 
+
 class model():
+
 
     def __init__(self, username, password, email):
         self.username = username
@@ -49,4 +51,3 @@ class model():
         cursor.close()
         conn.close()
         return dict['password']
-
