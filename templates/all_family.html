@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>all_family</title>
+</head>
+<body>
+
+<h1>    welcome:<a href="{{ url_for('third_blue.user') }}">{{ session.get('user') }}</a>
+</h1>
+
+{% for a in artic %}
+    编号：{{ a['id'] }}&nbsp;&nbsp;&nbsp;&nbsp;
+    标题：<a href="{{ url_for('sec_blue.artic',id=a['id']) }}">{{ a['title'] }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    标签：<a href="{{ url_for('sec_blue.query',family=a['family'] ) }}" methods="post">{{ a['family'] }}</a><br>
+    正文：{{ a['content'] }}<br>
+{% endfor %}
+
+</body>
+</html>

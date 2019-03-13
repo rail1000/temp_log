@@ -2,33 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HOME</title>
+    <title>{{ session.get('user') }}的个人中心</title>
 </head>
-
 <body>
-<script>
-
-    var date_id = {{ date_id }};
-    //document.write(date_id)
-    //var date_family = {{ date_family }};
-    //document.write(date_family)
-    //var date_title = {{ date_title }};
-    //var date_content = {{ date_content }};
-
-  //  for(var i=0;i<date_id.length;i++){
-   //     document.write("date_id[i]"+"<br>");
-
-    //}
-
-
-</script>
-<h1>
 
     welcome:<a href="{{ url_for('third_blue.user') }}">{{ session.get('user') }}</a>
-</h1><br>
-<a href="{{ url_for('first_blue.login') }}">登陆</a>
+    <br>
+    <br>
 
-<br>
 {% for a in artic %}
     编号：{{ a['id'] }}&nbsp;&nbsp;&nbsp;&nbsp;
     标题：<a href="{{ url_for('sec_blue.artic',id=a['id']) }}">{{ a['title'] }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -43,6 +24,6 @@
 
 </form>
 
-    </center>
+<a href="{{ url_for('third_blue.tans') }}">要发贴？点我去发帖</a>
 </body>
 </html>
